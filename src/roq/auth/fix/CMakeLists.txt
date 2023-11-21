@@ -10,7 +10,14 @@ set(TARGET_NAME ${PROJECT_NAME})
 
 add_subdirectory(flags)
 
-set(SOURCES application.cpp config.cpp controller.cpp settings.cpp main.cpp)
+set(SOURCES
+    application.cpp
+    config.cpp
+    controller.cpp
+    response.cpp
+    session.cpp
+    settings.cpp
+    main.cpp)
 
 add_executable(${TARGET_NAME} ${SOURCES})
 
@@ -19,6 +26,7 @@ add_dependencies(${TARGET_NAME} ${TARGET_NAME}-flags-autogen-headers)
 target_link_libraries(
   ${TARGET_NAME}
   PRIVATE ${TARGET_NAME}-flags
+          roq-web::roq-web
           roq-io::roq-io
           roq-logging::roq-logging
           roq-logging::roq-logging-flags

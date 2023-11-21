@@ -45,30 +45,6 @@ bool find_and_remove(auto &node, std::string_view const &key, Callback callback)
   return true;
 }
 
-template <typename R>
-R parse_symbols(auto &node) {
-  using result_type = std::remove_cvref<R>::type;
-  result_type result;
-  auto parse_helper = [&](auto &node) {
-    using value_type = typename R::value_type;
-    if (node.is_value()) {
-      result.emplace(*node.template value<value_type>());
-    } else if (node.is_array()) {
-      auto &arr = *node.as_array();
-      for (auto &node_2 : arr) {
-        result.emplace(*node_2.template value<value_type>());
-      }
-    } else {
-      log::fatal("Unexpected"sv);
-    }
-  };
-  if (find_and_remove(node, "symbols"sv, parse_helper)) {
-  } else {
-    log::fatal(R"(Unexpected: did not find the "symbols" table)"sv);
-  }
-  return result;
-}
-
 auto parse_user(auto &node) {
   auto table = *node.as_table();
   User result;
@@ -129,8 +105,7 @@ Config Config::parse_text(std::string_view const &text) {
   return Config{root};
 }
 
-Config::Config(auto &node)
-    : symbols{parse_symbols<decltype(symbols)>(node)}, users{parse_users<decltype(users)>(node)} {
+Config::Config(auto &node) : users{parse_users<decltype(users)>(node)} {
   check_empty(node);
 }
 

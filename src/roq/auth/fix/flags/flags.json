@@ -3,6 +3,12 @@
   "type": "flags",
   "values": [
     {
+      "name": "name",
+      "type": "std::string",
+      "required": true,
+      "description": "service name"
+    },
+    {
       "name": "config_file",
       "type": "std::string",
       "validator": "roq::flags::validators::Path",
@@ -10,30 +16,16 @@
       "description": "config file (path)"
     },
     {
-      "name": "db_type",
-      "type": "std::string",
-      "required": true,
-      "default": "sqlite",
-      "description": "database type"
-    },
-    {
-      "name": "db_params",
-      "type": "std::string",
-      "required": true,
-      "default": "risk.sqlite3",
-      "description": "database parameters"
-    },
-    {
-      "name": "control_listen_address",
+      "name": "listen_address",
       "type": "std::string",
       "validator": "roq::flags::validators::ListenAddress",
       "required": true,
-      "description": "control listen address"
+      "description": "listen address"
     },
     {
-      "name": "control_url_prefix",
+      "name": "url_prefix",
       "type": "std::string",
-      "description": "control url prefix"
+      "description": "url prefix"
     }
   ]
 }

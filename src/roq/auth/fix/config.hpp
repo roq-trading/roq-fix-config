@@ -29,7 +29,6 @@ struct Config final {
   static Config parse_file(std::string_view const &);
   static Config parse_text(std::string_view const &);
 
-  absl::flat_hash_set<std::string> const symbols;
   absl::flat_hash_map<std::string, User> const users;
 
  protected:
@@ -80,10 +79,8 @@ struct fmt::formatter<roq::auth::fix::Config> {
     return fmt::format_to(
         context.out(),
         R"({{)"
-        R"(symbols=[{}], )"
         R"(users=[{}])"
         R"(}})"_cf,
-        fmt::join(value.symbols, ", "sv),
         fmt::join(std::ranges::views::transform(value.users, [](auto &item) { return item.second; }), ","sv));
   }
 };

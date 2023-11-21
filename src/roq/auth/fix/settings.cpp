@@ -10,7 +10,7 @@ namespace roq {
 namespace auth {
 namespace fix {
 
-Settings::Settings(args::Parser const &args) : flags::Flags{flags::Flags::create()} {
+Settings::Settings(args::Parser const &) : flags::Flags{flags::Flags::create()} {
   log::debug("settings={}"sv, *this);
 }
 
