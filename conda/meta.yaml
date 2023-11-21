@@ -1,0 +1,41 @@
+package:
+  name: roq-risk-manager
+  version: {{ GIT_DESCRIBE_TAG }}
+
+source:
+  git_url: ..
+
+build:
+  skip: true  # [not unix]
+  number: {{ ROQ_BUILD_NUMBER if ROQ_BUILD_NUMBER is defined else GIT_DESCRIBE_NUMBER }}                                
+  script_env:                                                                                                           
+    - ROQ_BUILD_NUMBER                                                                                                  
+    - ROQ_BUILD_TYPE                                                                                                    
+  run_exports:                                                                                                          
+    - {{ pin_subpackage('roq-risk-manager', max_pin='x.x.x') }}
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - clangdev
+    - cmake
+    - make
+    - pkg-config
+  host:
+    - abseil-cpp
+    - catch2  # [linux]
+    - nlohmann_json
+    - roq-client
+    - roq-flags
+    - roq-io
+    - roq-oss-benchmark
+    - roq-oss-catch2  # [osx]
+    - roq-oss-tomlplusplus
+    - roq-web
+    - sqlite
+
+about:
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Roq's Risk Manager (a template project)
