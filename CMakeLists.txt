@@ -11,14 +11,13 @@ include(RoqConfig)
 
 # project
 
-project(roq-risk-manager)
+project(roq-fix-auth)
 
 # dependencies
 
 find_package(absl REQUIRED)
 find_package(fmt REQUIRED)
 find_package(roq-api REQUIRED)
-find_package(roq-client REQUIRED)
 find_package(roq-flags REQUIRED)
 find_package(roq-io REQUIRED)
 find_package(roq-logging REQUIRED)
@@ -34,8 +33,6 @@ find_package(PkgConfig REQUIRED)
 find_package(Catch2 REQUIRED)
 
 find_program(CLANG_FORMAT clang-format REQUIRED)
-
-pkg_check_modules(SQLITE3 REQUIRED sqlite3)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(CTest)
@@ -60,7 +57,7 @@ include_directories(
 
 # sub-projects
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/roq/auth/fix)
 
 # https://stackoverflow.com/a/73090806
 

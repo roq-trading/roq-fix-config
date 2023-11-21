@@ -1,5 +1,5 @@
 package:
-  name: roq-risk-manager
+  name: roq-fix-auth
   version: {{ GIT_DESCRIBE_TAG }}
 
 source:
@@ -12,7 +12,7 @@ build:
     - ROQ_BUILD_NUMBER                                                                                                  
     - ROQ_BUILD_TYPE                                                                                                    
   run_exports:                                                                                                          
-    - {{ pin_subpackage('roq-risk-manager', max_pin='x.x.x') }}
+    - {{ pin_subpackage('roq-fix-auth', max_pin='x.x.x') }}
 
 requirements:
   build:
@@ -25,17 +25,15 @@ requirements:
     - abseil-cpp
     - catch2  # [linux]
     - nlohmann_json
-    - roq-client
     - roq-flags
     - roq-io
     - roq-oss-benchmark
     - roq-oss-catch2  # [osx]
     - roq-oss-tomlplusplus
     - roq-web
-    - sqlite
 
 about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: Roq's Risk Manager (a template project)
+  summary: Roq's FIX Authenticator
