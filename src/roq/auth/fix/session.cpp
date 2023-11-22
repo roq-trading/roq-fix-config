@@ -123,36 +123,16 @@ void Session::route(
   switch (request.method) {
     using enum web::http::Method;
     case GET:
-      /*
-      if (path[0] == "accounts"sv) {
+      if (path[0] == "user"sv) {
         if (std::size(path) == 1)
-          get_accounts(response, request);
-      } else if (path[0] == "positions"sv) {
-        if (std::size(path) == 1)
-          get_positions(response, request);
-      } else if (path[0] == "trades"sv) {
-        if (std::size(path) == 1)
-          get_trades(response, request);
-      } else if (path[0] == "funds"sv) {
-        if (std::size(path) == 1)
-          get_funds(response, request);
+          get_user(response, request);
       }
-      */
       break;
     case HEAD:
       break;
     case POST:
       break;
     case PUT:
-      /*
-      if (path[0] == "trade"sv) {
-        if (std::size(path) == 1)
-          put_trade(response, request);
-      } else if (path[0] == "compress"sv) {
-        if (std::size(path) == 1)
-          put_compress(response, request);
-      }
-      */
       break;
     case DELETE:
       break;
@@ -163,6 +143,40 @@ void Session::route(
     case TRACE:
       break;
   }
+}
+
+void Session::get_user(Response &response, web::rest::Server::Request const &request) {
+  std::string_view component, username, password;
+  for (auto &[key, value] : request.query) {
+    if (key == "component"sv) {
+      component = value;
+    } else if (key == "username"sv) {
+      username = value;
+    } else if (key == "password"sv) {
+      password = value;
+    } else {
+      throw RuntimeError{R"(Unexpected: query key="{}" not supported)"sv, key};
+    }
+  }
+  if (std::empty(component) || std::empty(username) || std::empty(password))
+    throw RuntimeError{R"(Unexpected: missing query params)"sv};
+  auto result = false;
+  // XXX FIXME we need index for component and username
+  for (auto &[key, user] : config_.users) {
+    if (user.component == component && user.username == username) {
+      if (user.password == password) {
+        result = true;
+      } else {
+        log::warn(
+            R"(Unexpected: component="{}", username="{}", password="{}"/"{}")"sv,
+            component,
+            username,
+            password,
+            user.password);
+      }
+    }
+  }
+  response(web::http::Status::OK, web::http::ContentType::APPLICATION_JSON, R"({{"status":{}}})"sv, result);
 }
 
 void Session::process(std::string_view const &message) {

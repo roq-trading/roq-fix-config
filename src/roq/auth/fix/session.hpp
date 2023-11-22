@@ -48,6 +48,8 @@ struct Session final : public web::rest::Server::Handler {
 
   void route(Response &, web::rest::Server::Request const &, std::span<std::string_view> const &path);
 
+  void get_user(Response &, web::rest::Server::Request const &);
+
   // ws
 
   void process(std::string_view const &message);
