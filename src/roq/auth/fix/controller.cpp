@@ -78,6 +78,10 @@ void Controller::operator()(io::net::tcp::Connection::Factory &factory) {
   sessions_.emplace(session_id, std::move(session));
 }
 
+void Controller::operator()(io::net::tcp::Connection::Factory &factory, io::NetworkAddress const &) {
+  (*this)(factory);
+}
+
 // Session::Handler
 
 void Controller::operator()(Session::Disconnected const &disconnected) {

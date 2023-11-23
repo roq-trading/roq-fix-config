@@ -37,6 +37,7 @@ struct Controller final : public io::sys::Signal::Handler,
 
   // io::net::tcp::Listener::Handler
   void operator()(io::net::tcp::Connection::Factory &) override;
+  void operator()(io::net::tcp::Connection::Factory &, io::NetworkAddress const &) override;
 
   // Session::Handler
   void operator()(Session::Disconnected const &) override;
