@@ -123,7 +123,7 @@ void Session::route(
   switch (request.method) {
     using enum web::http::Method;
     case GET:
-      if (path[0] == "user"sv) {
+      if (path[0] == "user"sv) {  // note! just for testing, really
         if (std::size(path) == 1)
           get_user(response, request);
       }
@@ -145,6 +145,7 @@ void Session::route(
   }
 }
 
+// note! checks if query params can be matched
 void Session::get_user(Response &response, web::rest::Server::Request const &request) {
   std::string_view component, username, password;
   for (auto &[key, value] : request.query) {
@@ -180,6 +181,7 @@ void Session::get_user(Response &response, web::rest::Server::Request const &req
 }
 
 void Session::process(std::string_view const &message) {
+  log::info(R"(message="{}")"sv, message);
   assert(!zombie());
   auto success = false;
   try {
@@ -188,9 +190,8 @@ void Session::process(std::string_view const &message) {
     if (version != JSONRPC_VERSION)
       throw RuntimeError{R"(Invalid JSONRPC version ("{}"))"sv, version};
     auto method = json.at("method"sv).template get<std::string_view>();
-    auto params = json.at("params"sv);
     auto id = json.at("id"sv);
-    process_jsonrpc(method, params, id);
+    process_jsonrpc(method, id);
     success = true;
   } catch (RuntimeError &e) {
     log::error("Error: {}"sv, e);
@@ -202,9 +203,39 @@ void Session::process(std::string_view const &message) {
     close();
 }
 
-void Session::process_jsonrpc(
-    [[maybe_unused]] std::string_view const &method, [[maybe_unused]] auto const &params, auto const &id) {
-  send_error(UNKNOWN_METHOD, id);  // XXX TODO define protocol
+void Session::process_jsonrpc(std::string_view const &method, auto const &id) {
+  if (method == "subscribe"sv) {
+    // XXX TODO insert, update, remove
+    std::string message;
+    fmt::format_to(std::back_inserter(message), "["sv);
+    auto first = true;
+    for (auto &[key, user] : config_.users) {
+      if (first) {
+        first = false;
+      } else {
+        fmt::format_to(std::back_inserter(message), ","sv);
+      }
+      fmt::format_to(
+          std::back_inserter(message),
+          R"({{)"
+          R"("action":"insert",)"
+          R"("component":"{}",)"
+          R"("username":"{}",)"
+          R"("password":"{}",)"
+          R"("accounts":"{}",)"
+          R"("strategy_id":{})"
+          R"(}})"sv,
+          user.component,
+          user.username,
+          user.password,
+          user.accounts,
+          user.strategy_id);
+    }
+    fmt::format_to(std::back_inserter(message), "]"sv);
+    send_result(message, id);
+  } else {
+    send_error(UNKNOWN_METHOD, id);
+  }
 }
 
 void Session::send_result(std::string_view const &message, auto const &id) {
@@ -226,7 +257,7 @@ void Session::send_jsonrpc(std::string_view const &type, std::string_view const 
       send_text(
           R"({{)"
           R"("jsonrpc":"{}",)"
-          R"("{}":"{}",)"
+          R"("{}":{},)"
           R"("id":"{}")"
           R"(}})"sv,
           JSONRPC_VERSION,
@@ -239,7 +270,7 @@ void Session::send_jsonrpc(std::string_view const &type, std::string_view const 
       send_text(
           R"({{)"
           R"("jsonrpc":"{}",)"
-          R"("{}":"{}",)"
+          R"("{}":{},)"
           R"("id":{})"
           R"(}})"sv,
           JSONRPC_VERSION,

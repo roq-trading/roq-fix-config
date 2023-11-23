@@ -54,7 +54,7 @@ struct Session final : public web::rest::Server::Handler {
 
   void process(std::string_view const &message);
 
-  void process_jsonrpc(std::string_view const &method, auto const &params, auto const &id);
+  void process_jsonrpc(std::string_view const &method, auto const &id);
 
   // helpers
 
