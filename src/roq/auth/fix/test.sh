@@ -28,5 +28,5 @@ fi
 $PREFIX "./roq-fix-auth" \
   --name "$NAME" \
   --config_file "$CONFIG_FILE" \
-  --client_listen_address 1234 \
+  --client_listen_address "ws://localhost:1234" \
   $@

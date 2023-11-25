@@ -19,7 +19,7 @@
       "name": "service_listen_address",
       "type": "std::string",
       "validator": "roq::flags::validators::ListenAddress",
-      "required": true,
+      "required": false,
       "description": "service listen address"
     },
     {
