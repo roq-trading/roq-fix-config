@@ -16,7 +16,14 @@
       "description": "config file (path)"
     },
     {
-      "name": "listen_address",
+      "name": "service_listen_address",
+      "type": "std::string",
+      "validator": "roq::flags::validators::ListenAddress",
+      "required": true,
+      "description": "service listen address"
+    },
+    {
+      "name": "client_listen_address",
       "type": "std::string",
       "validator": "roq::flags::validators::ListenAddress",
       "required": true,

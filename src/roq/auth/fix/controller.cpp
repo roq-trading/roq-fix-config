@@ -24,7 +24,7 @@ auto const CLEANUP_FREQUENCY = 1s;
 
 namespace {
 auto create_network_address(auto &settings) {
-  auto address = settings.listen_address;
+  auto address = settings.client_listen_address;
   uint16_t port = {};
   auto [_, ec] = std::from_chars(std::begin(address), std::end(address), port);
   if (ec == std::errc{}) {
