@@ -8,7 +8,7 @@
 #include "roq/web/rest/server.hpp"
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 // helper
@@ -37,5 +37,5 @@ struct Response final {
 };
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

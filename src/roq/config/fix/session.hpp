@@ -8,12 +8,12 @@
 
 #include "roq/web/rest/server.hpp"
 
-#include "roq/auth/fix/config.hpp"
-#include "roq/auth/fix/response.hpp"
-#include "roq/auth/fix/settings.hpp"
+#include "roq/config/fix/config.hpp"
+#include "roq/config/fix/response.hpp"
+#include "roq/config/fix/settings.hpp"
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 struct Session final : public web::rest::Server::Handler {
@@ -77,5 +77,5 @@ struct Session final : public web::rest::Server::Handler {
 };
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

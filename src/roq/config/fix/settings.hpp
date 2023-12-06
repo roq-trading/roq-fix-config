@@ -7,10 +7,10 @@
 
 #include "roq/args/parser.hpp"
 
-#include "roq/auth/fix/flags/flags.hpp"
+#include "roq/config/fix/flags/flags.hpp"
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 struct Settings final : public flags::Flags {
@@ -18,23 +18,23 @@ struct Settings final : public flags::Flags {
 };
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq
 
 template <>
-struct fmt::formatter<roq::auth::fix::Settings> {
+struct fmt::formatter<roq::config::fix::Settings> {
   template <typename Context>
   constexpr auto parse(Context &context) {
     return std::begin(context);
   }
   template <typename Context>
-  auto format(roq::auth::fix::Settings const &value, Context &context) const {
+  auto format(roq::config::fix::Settings const &value, Context &context) const {
     using namespace fmt::literals;
     return fmt::format_to(
         context.out(),
         R"({{)"
         R"(flags={})"
         R"(}})"_cf,
-        static_cast<roq::auth::fix::flags::Flags const &>(value));
+        static_cast<roq::config::fix::flags::Flags const &>(value));
   }
 };

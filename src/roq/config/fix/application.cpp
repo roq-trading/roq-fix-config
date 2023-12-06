@@ -1,16 +1,16 @@
 /* Copyright (c) 2017-2024, Hans Erik Thrane */
 
-#include "roq/auth/fix/application.hpp"
+#include "roq/config/fix/application.hpp"
 
 #include "roq/io/engine/context_factory.hpp"
 
-#include "roq/auth/fix/config.hpp"
-#include "roq/auth/fix/settings.hpp"
+#include "roq/config/fix/config.hpp"
+#include "roq/config/fix/settings.hpp"
 
 using namespace std::literals;
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 // === IMPLEMENTATION ===
@@ -27,5 +27,5 @@ int Application::main(args::Parser const &args) {
 }
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

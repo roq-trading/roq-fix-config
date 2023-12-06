@@ -10,7 +10,7 @@ roq_autogen(
   OUTPUT
   AUTOGEN_HEADERS
   NAMESPACE
-  "roq/auth/fix/flags"
+  "roq/config/fix/flags"
   OUTPUT_TYPE
   "flags"
   FILE_TYPE
@@ -24,7 +24,7 @@ roq_autogen(
   OUTPUT
   AUTOGEN_SOURCES
   NAMESPACE
-  "roq/auth/fix/flags"
+  "roq/config/fix/flags"
   OUTPUT_TYPE
   "flags"
   FILE_TYPE

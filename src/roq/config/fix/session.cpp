@@ -1,6 +1,6 @@
 /* Copyright (c) 2017-2024, Hans Erik Thrane */
 
-#include "roq/auth/fix/session.hpp"
+#include "roq/config/fix/session.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -20,7 +20,7 @@
 using namespace std::literals;
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 // === CONSTANTS ===
@@ -292,5 +292,5 @@ void Session::send_text(fmt::format_string<Args...> const &fmt, Args &&...args) 
 }
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

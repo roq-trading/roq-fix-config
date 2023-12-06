@@ -7,10 +7,10 @@
 
 #include "roq/service.hpp"
 
-#include "roq/auth/fix/controller.hpp"
+#include "roq/config/fix/controller.hpp"
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 struct Application final : public Service {
@@ -24,5 +24,5 @@ struct Application final : public Service {
 };
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

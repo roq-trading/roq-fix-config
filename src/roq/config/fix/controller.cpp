@@ -1,6 +1,6 @@
 /* Copyright (c) 2017-2024, Hans Erik Thrane */
 
-#include "roq/auth/fix/controller.hpp"
+#include "roq/config/fix/controller.hpp"
 
 #include <charconv>
 #include <filesystem>
@@ -10,7 +10,7 @@
 using namespace std::literals;
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 // === CONSTANTS ===
@@ -103,5 +103,5 @@ void Controller::remove_zombies() {
 }
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

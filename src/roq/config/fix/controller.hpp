@@ -9,12 +9,12 @@
 
 #include "roq/io/net/tcp/listener.hpp"
 
-#include "roq/auth/fix/config.hpp"
-#include "roq/auth/fix/session.hpp"
-#include "roq/auth/fix/settings.hpp"
+#include "roq/config/fix/config.hpp"
+#include "roq/config/fix/session.hpp"
+#include "roq/config/fix/settings.hpp"
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 struct Controller final : public io::sys::Signal::Handler,
@@ -62,5 +62,5 @@ struct Controller final : public io::sys::Signal::Handler,
 };
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

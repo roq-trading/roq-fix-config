@@ -1,6 +1,6 @@
 /* Copyright (c) 2017-2024, Hans Erik Thrane */
 
-#include "roq/auth/fix/config.hpp"
+#include "roq/config/fix/config.hpp"
 
 #include <toml++/toml.h>
 
@@ -10,7 +10,7 @@
 using namespace std::literals;
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 // === HELPERS ===
@@ -110,5 +110,5 @@ Config::Config(auto &node) : users{parse_users<decltype(users)>(node)} {
 }
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

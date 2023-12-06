@@ -1,5 +1,5 @@
 package:
-  name: roq-fix-auth
+  name: roq-fix-config
   version: {{ GIT_DESCRIBE_TAG }}
 
 source:
@@ -12,7 +12,7 @@ build:
     - ROQ_BUILD_NUMBER                                                                                                  
     - ROQ_BUILD_TYPE                                                                                                    
   run_exports:                                                                                                          
-    - {{ pin_subpackage('roq-fix-auth', max_pin='x.x.x') }}
+    - {{ pin_subpackage('roq-fix-config', max_pin='x.x.x') }}
 
 requirements:
   build:
@@ -36,4 +36,4 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: Roq's FIX Authenticator
+  summary: Roq's FIX config service

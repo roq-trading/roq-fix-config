@@ -1,13 +1,13 @@
 /* Copyright (c) 2017-2024, Hans Erik Thrane */
 
-#include "roq/auth/fix/settings.hpp"
+#include "roq/config/fix/settings.hpp"
 
 #include "roq/logging.hpp"
 
 using namespace std::literals;
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 Settings::Settings(args::Parser const &) : flags::Flags{flags::Flags::create()} {
@@ -15,5 +15,5 @@ Settings::Settings(args::Parser const &) : flags::Flags{flags::Flags::create()} 
 }
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

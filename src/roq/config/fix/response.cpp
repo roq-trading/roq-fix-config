@@ -1,11 +1,11 @@
 /* Copyright (c) 2017-2024, Hans Erik Thrane */
 
-#include "roq/auth/fix/response.hpp"
+#include "roq/config/fix/response.hpp"
 
 using namespace std::literals;
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 // === CONSTANTS ===
@@ -38,5 +38,5 @@ void Response::send(web::http::Status status, web::http::ContentType content_typ
 }
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq

@@ -14,7 +14,7 @@
 #include <string_view>
 
 namespace roq {
-namespace auth {
+namespace config {
 namespace fix {
 
 struct User final {
@@ -36,17 +36,17 @@ struct Config final {
 };
 
 }  // namespace fix
-}  // namespace auth
+}  // namespace config
 }  // namespace roq
 
 template <>
-struct fmt::formatter<roq::auth::fix::User> {
+struct fmt::formatter<roq::config::fix::User> {
   template <typename Context>
   constexpr auto parse(Context &context) {
     return std::begin(context);
   }
   template <typename Context>
-  auto format(roq::auth::fix::User const &value, Context &context) const {
+  auto format(roq::config::fix::User const &value, Context &context) const {
     using namespace std::literals;
     using namespace fmt::literals;
     return fmt::format_to(
@@ -67,13 +67,13 @@ struct fmt::formatter<roq::auth::fix::User> {
 };
 
 template <>
-struct fmt::formatter<roq::auth::fix::Config> {
+struct fmt::formatter<roq::config::fix::Config> {
   template <typename Context>
   constexpr auto parse(Context &context) {
     return std::begin(context);
   }
   template <typename Context>
-  auto format(roq::auth::fix::Config const &value, Context &context) const {
+  auto format(roq::config::fix::Config const &value, Context &context) const {
     using namespace std::literals;
     using namespace fmt::literals;
     return fmt::format_to(

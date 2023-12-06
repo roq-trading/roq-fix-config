@@ -11,7 +11,7 @@ include(RoqConfig)
 
 # project
 
-project(roq-fix-auth)
+project(roq-fix-config)
 
 # dependencies
 
@@ -57,7 +57,7 @@ include_directories(
 
 # sub-projects
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/roq/auth/fix)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/roq/config/fix)
 
 # https://stackoverflow.com/a/73090806
 
