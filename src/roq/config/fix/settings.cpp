@@ -11,7 +11,7 @@ namespace config {
 namespace fix {
 
 Settings::Settings(args::Parser const &) : flags::Flags{flags::Flags::create()} {
-  log::debug("settings={}"sv, *this);
+  log::info("settings={}"sv, *this);
 }
 
 }  // namespace fix
