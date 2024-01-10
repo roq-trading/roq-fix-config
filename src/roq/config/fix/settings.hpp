@@ -23,18 +23,14 @@ struct Settings final : public flags::Flags {
 
 template <>
 struct fmt::formatter<roq::config::fix::Settings> {
-  template <typename Context>
-  constexpr auto parse(Context &context) {
-    return std::begin(context);
-  }
-  template <typename Context>
-  auto format(roq::config::fix::Settings const &value, Context &context) const {
-    using namespace fmt::literals;
+  constexpr auto parse(format_parse_context &context) { return std::begin(context); }
+  auto format(roq::config::fix::Settings const &value, format_context &context) const {
+    using namespace std::literals;
     return fmt::format_to(
         context.out(),
         R"({{)"
         R"(flags={})"
-        R"(}})"_cf,
+        R"(}})"sv,
         static_cast<roq::config::fix::flags::Flags const &>(value));
   }
 };

@@ -59,12 +59,6 @@ include_directories(
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/roq/config/fix)
 
-# https://stackoverflow.com/a/73090806
-
-if(APPLE)
-  add_compile_definitions(FMT_USE_NONTYPE_TEMPLATE_ARGS=1)
-endif()
-
 # config
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/ DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})

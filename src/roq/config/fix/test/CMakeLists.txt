@@ -11,8 +11,4 @@ if(ROQ_BUILD_TYPE STREQUAL "Release")
   set_target_properties(${TARGET_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
 endif()
 
-if(APPLE)
-  target_compile_definitions(${TARGET_NAME} PRIVATE FMT_USE_NONTYPE_TEMPLATE_ARGS=1)
-endif()
-
 add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME})
