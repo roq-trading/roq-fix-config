@@ -13,6 +13,10 @@ include(RoqConfig)
 
 project(roq-fix-config)
 
+# filesystem
+
+include(GNUInstallDirs)
+
 # dependencies
 
 find_package(absl REQUIRED)
