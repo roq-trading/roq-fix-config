@@ -11,7 +11,7 @@
 
 #include "roq/exceptions.hpp"
 
-#include "roq/web/rest/server_factory.hpp"
+#include "roq/web/rest/server.hpp"
 
 using namespace std::literals;
 
@@ -40,7 +40,7 @@ Session::Session(
     uint64_t session_id,
     io::net::tcp::Connection::Factory &factory)
     : handler_{handler}, settings_{settings}, config_{config}, session_id_{session_id},
-      server_{web::rest::ServerFactory::create(*this, factory)} {
+      server_{web::rest::Server::create(*this, factory)} {
 }
 
 bool Session::ready() const {
