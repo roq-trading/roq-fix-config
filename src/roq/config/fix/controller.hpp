@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "roq/utils/container.hpp"
+
 #include "roq/io/context.hpp"
 
 #include "roq/io/sys/signal.hpp"
@@ -56,8 +58,8 @@ struct Controller final : public io::sys::Signal::Handler,
   std::unique_ptr<io::net::tcp::Listener> listener_;
   // sessions
   uint64_t next_session_id_ = {};
-  absl::flat_hash_map<uint64_t, std::unique_ptr<Session>> sessions_;
-  absl::flat_hash_set<uint64_t> zombies_;
+  utils::unordered_map<uint64_t, std::unique_ptr<Session>> sessions_;
+  utils::unordered_set<uint64_t> zombies_;
   std::chrono::nanoseconds next_cleanup_ = {};
 };
 

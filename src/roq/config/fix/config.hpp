@@ -2,15 +2,14 @@
 
 #pragma once
 
-#include <absl/container/flat_hash_map.h>
-#include <absl/container/flat_hash_set.h>
-
 #include <fmt/format.h>
 
 #include <ranges>
 
 #include <string>
 #include <string_view>
+
+#include "roq/utils/container.hpp"
 
 namespace roq {
 namespace config {
@@ -28,7 +27,7 @@ struct Config final {
   static Config parse_file(std::string_view const &);
   static Config parse_text(std::string_view const &);
 
-  absl::flat_hash_map<std::string, User> const users;
+  utils::unordered_map<std::string, User> const users;
 
  protected:
   explicit Config(auto &node);
