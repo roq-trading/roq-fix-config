@@ -6,33 +6,33 @@
       "name": "name",
       "type": "std::string",
       "required": true,
-      "description": "service name"
+      "description": "Service name"
     },
     {
       "name": "config_file",
       "type": "std::string",
       "validator": "roq::flags::validators::Path",
       "required": true,
-      "description": "config file (path)"
+      "description": "Config file (path)"
     },
     {
       "name": "service_listen_address",
       "type": "std::string",
       "validator": "roq::flags::validators::ListenAddress",
       "required": false,
-      "description": "service listen address"
+      "description": "Service listen address"
     },
     {
       "name": "client_listen_address",
       "type": "std::string",
       "validator": "roq::flags::validators::ListenAddress",
       "required": true,
-      "description": "listen address"
+      "description": "Listen address"
     },
     {
       "name": "url_prefix",
       "type": "std::string",
-      "description": "url prefix"
+      "description": "URL prefix"
     }
   ]
 }
